@@ -1,1 +1,1132 @@
-# portfolio
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xenia Bonilla — Account Management Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1612;
+    --blush: #c9a08a;
+    --rose: #b5705a;
+    --warm-white: #f7f3ee;
+    --warm-mid: #ede5db;
+    --muted: #8a7d74;
+    --rule: #d9cfc5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 52px 72px 44px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 32px;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .name-block h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 54px;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .name-block h1 em { font-style: italic; color: var(--rose); }
+
+  .name-block .title {
+    margin-top: 10px;
+    font-size: 11.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--rose);
+    font-weight: 500;
+  }
+
+  .availability-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--rose);
+    opacity: 0.7;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  .contact-block {
+    text-align: right;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 2.1;
+  }
+
+  .contact-block a {
+    color: var(--rose);
+    text-decoration: none;
+    border-bottom: 1px solid var(--blush);
+    transition: color 0.2s;
+  }
+
+  .contact-block a:hover { color: var(--ink); }
+
+  /* ── NAV ── */
+  nav {
+    padding: 18px 72px;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--rule);
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  nav button {
+    cursor: pointer;
+    background: none;
+    border: 1px solid var(--rule);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 6px 16px;
+    border-radius: 20px;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+
+  nav button.active, nav button:hover {
+    background: var(--ink);
+    color: var(--warm-white);
+    border-color: var(--ink);
+  }
+
+  /* ── LAYOUT ── */
+  main {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: calc(100vh - 200px);
+  }
+
+  /* ── SIDEBAR ── */
+  aside {
+    padding: 44px 36px 48px 72px;
+    border-right: 1px solid var(--rule);
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .sidebar-section { margin-bottom: 38px; }
+
+  .sidebar-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .stat-item { margin-bottom: 20px; }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+
+  .skill-tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--warm-mid);
+    border-radius: 3px;
+    margin: 3px 3px 3px 0;
+    color: var(--ink);
+  }
+
+  .industry-list {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 2.1;
+  }
+
+  .current-work-box {
+    background: var(--ink);
+    border-radius: 4px;
+    padding: 18px 20px;
+    margin-top: 4px;
+  }
+
+  .current-work-box .cw-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--warm-white);
+    font-style: italic;
+    margin-bottom: 6px;
+  }
+
+  .current-work-box p {
+    font-size: 11.5px;
+    color: #a09890;
+    line-height: 1.7;
+  }
+
+  .current-work-box .cw-tag {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--blush);
+    border: 1px solid rgba(201,160,138,0.3);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  /* ── CONTENT PANELS ── */
+  .content {
+    padding: 44px 72px 72px 52px;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 30px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .section-header .line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── CASE CARDS ── */
+  .case-card {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    transition: box-shadow 0.25s, transform 0.25s;
+    background: white;
+  }
+
+  .case-card:hover {
+    box-shadow: 0 8px 32px rgba(26,22,18,0.08);
+    transform: translateY(-2px);
+  }
+
+  .case-card-top {
+    padding: 26px 30px 20px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .case-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .case-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .case-result-badge {
+    background: var(--warm-mid);
+    border-radius: 3px;
+    padding: 10px 16px;
+    text-align: center;
+    min-width: 110px;
+    flex-shrink: 0;
+  }
+
+  .badge-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--rose);
+    line-height: 1;
+  }
+
+  .badge-label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  .case-body {
+    padding: 22px 30px;
+    background: var(--warm-white);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .case-pillar h4 {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .case-pillar p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* ── PHILOSOPHY + AI ── */
+  .philosophy-strip { margin-top: 44px; border-radius: 4px; overflow: hidden; }
+
+  .phil-top {
+    background: var(--ink);
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .phil-top blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 23px;
+    font-style: italic;
+    color: var(--warm-white);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .phil-top blockquote span { color: var(--blush); }
+
+  .phil-top .phil-body {
+    font-size: 13px;
+    color: #a09890;
+    line-height: 1.85;
+  }
+
+  .ai-strip {
+    background: var(--rose);
+    padding: 20px 40px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .ai-strip .ai-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .ai-strip p { font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.7; }
+  .ai-strip p strong { color: white; font-weight: 500; }
+
+  /* ── SCOPE & SCALE ── */
+  .scope-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+
+  .scope-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: box-shadow 0.2s;
+  }
+
+  .scope-card:hover { box-shadow: 0 4px 20px rgba(26,22,18,0.07); }
+
+  .scope-card .sc-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--rose);
+    line-height: 1;
+  }
+
+  .scope-card .sc-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .scope-card .sc-sub {
+    font-size: 12px;
+    color: var(--blush);
+    margin-top: 4px;
+  }
+
+  .scope-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .scope-block {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 24px 28px;
+  }
+
+  .scope-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+
+  .scope-block ul {
+    list-style: none;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  .scope-block ul li::before {
+    content: '—';
+    color: var(--blush);
+    margin-right: 8px;
+  }
+
+  .geography-strip {
+    background: var(--ink);
+    border-radius: 4px;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .geography-strip .geo-label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--blush);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .geo-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .geo-tag {
+    font-size: 12px;
+    color: var(--warm-white);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+
+  /* ── TOOLS & SYSTEMS ── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .tool-category {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 26px 28px;
+  }
+
+  .tool-category h3 {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .tool-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tool-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .tool-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blush);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .tool-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .tool-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+
+  .tools-note {
+    background: var(--warm-mid);
+    border-radius: 4px;
+    padding: 18px 24px;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* ── REFERENCES ── */
+  .ref-card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 32px 36px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.2s;
+  }
+
+  .ref-card:hover { box-shadow: 0 4px 20px rgba(26,22,18,0.07); }
+
+  .ref-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    border-left: 2px solid var(--blush);
+  }
+
+  .ref-attribution {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .ref-initials {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--warm-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--rose);
+    flex-shrink: 0;
+  }
+
+  .ref-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .ref-title {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .ref-context-tag {
+    margin-left: auto;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rose);
+    background: rgba(181,112,90,0.08);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .ref-corporate-note {
+    background: var(--ink);
+    border-radius: 4px;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .ref-corporate-note .rcn-icon {
+    font-size: 28px;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .ref-corporate-note p {
+    font-size: 13px;
+    color: #a09890;
+    line-height: 1.75;
+  }
+
+  .ref-corporate-note p strong {
+    color: var(--warm-white);
+    font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 22px 72px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .footer-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--blush);
+    display: inline-block;
+    margin: 0 8px;
+    vertical-align: middle;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .tab-panel.active { animation: panelIn 0.3s ease both; }
+
+  @media (max-width: 960px) {
+    header, nav, footer { padding-left: 24px; padding-right: 24px; }
+    main { grid-template-columns: 1fr; }
+    aside { border-right: none; border-bottom: 1px solid var(--rule); padding: 32px 24px; }
+    .content { padding: 32px 24px; }
+    .case-body, .scope-row { grid-template-columns: 1fr; }
+    .scope-grid { grid-template-columns: repeat(2, 1fr); }
+    .tools-grid { grid-template-columns: 1fr; }
+    .phil-top { grid-template-columns: 1fr; }
+    .ai-strip { grid-template-columns: 1fr; }
+    .case-card-top { grid-template-columns: 1fr; }
+    .ref-context-tag { display: none; }
+  }
+
+  @media (max-width: 500px) {
+    .scope-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="name-block">
+    <h1>Xenia <em>Bonilla</em></h1>
+    <p class="title">National Account Management &nbsp;·&nbsp; Strategic Partnerships &nbsp;·&nbsp; Market Development</p>
+    <div class="availability-badge">Available for full-time roles &amp; strategic consulting engagements</div>
+  </div>
+  <div class="contact-block">
+    Winston-Salem, NC &nbsp;·&nbsp; Bilingual: English / Español<br>
+    <a href="https://linkedin.com/in/xenia-bonillam" target="_blank">LinkedIn</a> &nbsp;·&nbsp;
+    <a href="mailto:xmbonilla@outlook.com">xmbonilla@outlook.com</a>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <button class="active" onclick="showTab('case-studies', this)">Case Studies</button>
+  <button onclick="showTab('scope-scale', this)">Scope &amp; Scale</button>
+  <button onclick="showTab('tools-systems', this)">Tools &amp; Systems</button>
+  <button onclick="showTab('references', this)">References</button>
+</nav>
+
+<main>
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Portfolio Scope</div>
+      <div class="stat-item">
+        <div class="stat-number">$40M+</div>
+        <div class="stat-desc">National account revenue managed at peak</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">20+</div>
+        <div class="stat-desc">National customers, each with nationwide U.S. footprints</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4+ yrs</div>
+        <div class="stat-desc">Progressive AM tenure, national accounts</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Industries Served</div>
+      <div class="industry-list">
+        Supply Chain &amp; Logistics<br>
+        Retail &amp; Distribution<br>
+        Food &amp; CPG<br>
+        National Manufacturing
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Core Competencies</div>
+      <span class="skill-tag">Account Retention</span>
+      <span class="skill-tag">Market Development</span>
+      <span class="skill-tag">Contract Negotiation</span>
+      <span class="skill-tag">Multi-site Coordination</span>
+      <span class="skill-tag">Executive Relationships</span>
+      <span class="skill-tag">Bilingual Client Service</span>
+      <span class="skill-tag">Team Development</span>
+      <span class="skill-tag">QBR &amp; Reporting</span>
+      <span class="skill-tag">RFP Responses</span>
+      <span class="skill-tag">SOW &amp; MSA Negotiation</span>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Current Work</div>
+      <a href="mailto:xmbonilla@outlook.com?subject=Consulting Inquiry — Consult with Xenia" style="text-decoration:none; display:block;">
+        <div class="current-work-box" onmouseover="this.style.opacity='0.82'" onmouseout="this.style.opacity='1'" style="cursor:pointer; transition: opacity 0.2s;">
+          <div class="cw-title">Consult with Xenia</div>
+          <p>Helping bilingual entrepreneurs and small business owners build legally sound, scalable foundations — in English and Spanish.</p>
+          <span class="cw-tag">✉ &nbsp;Get in touch</span>
+        </div>
+      </a>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- TAB 1: CASE STUDIES -->
+    <div id="case-studies" class="tab-panel active">
+      <div class="section-header">
+        <h2>Selected Case Studies</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-card-top">
+          <div>
+            <div class="case-tag">National Account Development &nbsp;·&nbsp; Market Expansion &nbsp;·&nbsp; Revenue Generation</div>
+            <div class="case-title">Developing a 196-location national account from contract to revenue — in under 5 months</div>
+          </div>
+          <div class="case-result-badge">
+            <div class="badge-number">$200K</div>
+            <div class="badge-label">New revenue generated</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-pillar">
+            <h4>Situation</h4>
+            <p>A newly signed national customer represented significant expansion potential across the U.S. — 196 operational locations, distributed purchasing, and no established infrastructure to support them. The account was operationally complex and landed without a clear owner. I chose to take it on.</p>
+          </div>
+          <div class="case-pillar">
+            <h4>What I Did</h4>
+            <p>I built and executed the full account development strategy: designed the pricing structure, established location-by-location POs, coordinated freight, and created the operational framework that made the relationship work at scale. I managed quality escalations and maintained the customer relationship throughout — all while carrying a full national account portfolio.</p>
+          </div>
+          <div class="case-pillar">
+            <h4>Result</h4>
+            <p>45–50 locations fully onboarded, 50K+ units shipped, and approximately $200K in new revenue generated — with 140+ locations still representing untapped growth potential at the time of my departure.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-card-top">
+          <div>
+            <div class="case-tag">Strategic Account Retention &nbsp;·&nbsp; Executive Relationship Management &nbsp;·&nbsp; Revenue Protection</div>
+            <div class="case-title">Defending a flagship national account against two years of competitive pressure — zero attrition</div>
+          </div>
+          <div class="case-result-badge">
+            <div class="badge-number">0%</div>
+            <div class="badge-label">Share of wallet lost</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-pillar">
+            <h4>Situation</h4>
+            <p>Within my largest national account — a flagship relationship spanning a geographically distributed U.S. footprint and representing significant portfolio revenue — one key site became a high-risk retention point. Local leadership was actively evaluating alternative suppliers. In accounts of this size, one lost location rarely stays one.</p>
+          </div>
+          <div class="case-pillar">
+            <h4>What I Did</h4>
+            <p>I designed and executed a long-term retention strategy built on accountability and relationship depth. I developed structured corrective action plans, tracked performance rigorously, and made repeated executive-level site visits to position myself — and the company — as a committed strategic partner. Across two years I managed layered communication between site leadership, corporate stakeholders, and internal teams, keeping all parties aligned and the relationship forward-moving.</p>
+          </div>
+          <div class="case-pillar">
+            <h4>Result</h4>
+            <p>Zero attrition. Through sustained competitive evaluation and two years of pressure, the account never switched suppliers. One of my highest-value relationships remained protected — held not by contract leverage, but by the kind of trust that only consistent, high-touch partnership earns.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-card-top">
+          <div>
+            <div class="case-tag">Relationship Recovery &nbsp;·&nbsp; Strategic Onboarding &nbsp;·&nbsp; Cultural Competency</div>
+            <div class="case-title">Rebuilding a damaged national account from the ground up — 5 of 6 locations converting to primary supplier within 6 months</div>
+          </div>
+          <div class="case-result-badge">
+            <div class="badge-number">83%</div>
+            <div class="badge-label">Conversion rate, damaged account</div>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-pillar">
+            <h4>Situation</h4>
+            <p>A nationally significant account had been damaged by prior mismanagement, leaving the relationship fractured and trust low. When the account was re-awarded, locations weren't obligated to source exclusively through us — they could pull from a pool of approved suppliers. We had a name to rebuild. I was brought in to make sure we earned their business, not just held the contract.</p>
+          </div>
+          <div class="case-pillar">
+            <h4>What I Did</h4>
+            <p>I developed a structured onboarding strategy focused on relationship-building at the local level — not just account-level coordination. I created detailed plans to ensure our regional teams developed their own direct relationships with site contacts, built in monthly then quarterly reporting cadences, and monitored every location through the transition. I prioritized cultural alignment throughout, ensuring our team engaged this partner with the respect and attentiveness the relationship required.</p>
+          </div>
+          <div class="case-pillar">
+            <h4>Result</h4>
+            <p>Within 6 months, 5 of 6 locations — including one site operating across two distribution warehouses — were sourcing primarily through us. What had been a damaged relationship became one of my strongest accounts, built on consistency, structure, and genuine partnership.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="philosophy-strip">
+        <div class="phil-top">
+          <blockquote>"I manage accounts by <span>understanding the business behind the contact</span> — and the people behind the business."</blockquote>
+          <div class="phil-body">My approach centers on long-term relationship health over short-term wins. I invest early in understanding each client's internal pressures, strategic priorities, and decision-making structure — so when challenges arise, I'm already positioned as a partner, not a vendor. Fluency in both English and Spanish allows me to build trust across cultural contexts that many account managers simply can't access.</div>
+        </div>
+        <div class="ai-strip">
+          <div class="ai-label">On AI &amp; Tools</div>
+          <p>The relationships I build <strong>cannot be automated</strong> — but the systems I build around them absolutely can be. I actively use AI tools to accelerate reporting, research, and operational workflows, which means more of my time goes where it actually matters: with the customer. I'm not someone who needs to be convinced to adopt new tools. I'm the person who figures out how to use them before anyone else asks.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: SCOPE & SCALE -->
+    <div id="scope-scale" class="tab-panel">
+      <div class="section-header">
+        <h2>Scope &amp; Scale</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="scope-grid">
+        <div class="scope-card">
+          <div class="sc-number">$40M+</div>
+          <div class="sc-label">Peak Portfolio Value</div>
+          <div class="sc-sub">National account revenue</div>
+        </div>
+        <div class="scope-card">
+          <div class="sc-number">20+</div>
+          <div class="sc-label">National Customers</div>
+          <div class="sc-sub">Each with multi-location U.S. footprints</div>
+        </div>
+        <div class="scope-card">
+          <div class="sc-number">100s</div>
+          <div class="sc-label">Locations Managed</div>
+          <div class="sc-sub">Across all national accounts</div>
+        </div>
+        <div class="scope-card">
+          <div class="sc-number">10M+</div>
+          <div class="sc-label">Units Annually</div>
+          <div class="sc-sub">Estimated at peak portfolio volume</div>
+        </div>
+        <div class="scope-card">
+          <div class="sc-number">8</div>
+          <div class="sc-label">Team Members Led</div>
+          <div class="sc-sub">Logistics coordinators, West Coast</div>
+        </div>
+        <div class="scope-card">
+          <div class="sc-number">4+ yrs</div>
+          <div class="sc-label">Years of Tenure</div>
+          <div class="sc-sub">Progressive AM growth</div>
+        </div>
+      </div>
+
+      <div class="scope-row">
+        <div class="scope-block">
+          <h3>Account Types Managed</h3>
+          <ul>
+            <li>National retail chains</li>
+            <li>Food &amp; CPG manufacturers</li>
+            <li>Third-party logistics providers</li>
+            <li>Agricultural cooperatives</li>
+            <li>Industrial distributors</li>
+            <li>Regional &amp; national DCs</li>
+          </ul>
+        </div>
+        <div class="scope-block">
+          <h3>Functional Experience</h3>
+          <ul>
+            <li>SOW development &amp; legal review</li>
+            <li>MSA negotiation &amp; execution</li>
+            <li>QBR planning &amp; delivery</li>
+            <li>RFP responses &amp; competitive bids</li>
+            <li>Corrective action plan management</li>
+            <li>Cross-functional team coordination</li>
+            <li>Heat treatment compliance programs</li>
+            <li>New location onboarding at scale</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="geography-strip">
+        <div class="geo-label">Geographic Coverage</div>
+        <div class="geo-tags">
+          <span class="geo-tag">West Coast</span>
+          <span class="geo-tag">Midwest</span>
+          <span class="geo-tag">Southeast</span>
+          <span class="geo-tag">Northeast</span>
+          <span class="geo-tag">South Central</span>
+          <span class="geo-tag">Pacific Northwest</span>
+          <span class="geo-tag">Great Plains</span>
+          <span class="geo-tag">National Multi-site</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: TOOLS & SYSTEMS -->
+    <div id="tools-systems" class="tab-panel">
+      <div class="section-header">
+        <h2>Tools &amp; Systems</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="tools-grid">
+        <div class="tool-category">
+          <h3>Microsoft Ecosystem</h3>
+          <div class="tool-item">
+            <div class="tool-dot"></div>
+            <div>
+              <div class="tool-name">Excel &amp; PowerBI</div>
+              <div class="tool-desc">Advanced reporting, portfolio tracking, QBR dashboards, and performance monitoring across multi-site accounts.</div>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-dot"></div>
+            <div>
+              <div class="tool-name">Microsoft Teams</div>
+              <div class="tool-desc">Cross-functional coordination, client communication, and team management across distributed locations.</div>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-dot"></div>
+            <div>
+              <div class="tool-name">Microsoft Copilot</div>
+              <div class="tool-desc">AI-assisted drafting, summarization, and workflow acceleration within the Microsoft environment.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-category">
+          <h3>CRM &amp; Business Development</h3>
+          <div class="tool-item">
+            <div class="tool-dot"></div>
+            <div>
+              <div class="tool-name">Salesforce</div>
+              <div class="tool-desc">Account management, pipeline tracking, activity logging, and customer relationship documentation.</div>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-dot"></div>
+            <div>
+              <div class="tool-name">HubSpot</div>
+              <div class="tool-desc">Client outreach, contact management, and pipeline organization for consulting engagements.</div>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-dot"></div>
+            <div>
+              <div class="tool-name">SAP / ERP Systems</div>
+              <div class="tool-desc">Order management, account data, and operational coordination within enterprise environments.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-category">
+          <h3>AI &amp; Productivity Tools</h3>
+          <div class="tool-item">
+            <div class="tool-dot"></div>
+            <div>
+              <div class="tool-name">ChatGPT &amp; Claude</div>
+              <div class="tool-desc">Research, drafting, proposal development, client communication prep, and operational workflow support.</div>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-dot"></div>
+            <div>
+              <div class="tool-name">Google Workspace</div>
+              <div class="tool-desc">Docs, Sheets, and Drive for client-facing deliverables and small business consulting engagements.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-category">
+          <h3>Industry-Specific Systems</h3>
+          <div class="tool-item">
+            <div class="tool-dot"></div>
+            <div>
+              <div class="tool-name">Logix (Microsoft Dynamics)</div>
+              <div class="tool-desc">Internal order management, account tracking, and logistics coordination across national accounts at 48forty Solutions.</div>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-dot"></div>
+            <div>
+              <div class="tool-name">Custom Reporting Frameworks</div>
+              <div class="tool-desc">Built account-specific Excel templates, location tracking tools, and coordinator coverage systems used across teams.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tools-note">
+        I don't just use tools — I build systems around them. At 48forty, I created email templates, Excel tracking files, and onboarding frameworks that outlasted my tenure and continued to support the team after I left. My approach to tooling is always: if I'm doing it more than twice, I'm systematizing it.
+      </div>
+    </div>
+
+    <!-- TAB 4: REFERENCES -->
+    <div id="references" class="tab-panel">
+      <div class="section-header">
+        <h2>References</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="ref-card">
+        <div class="ref-quote">
+          "Xenia has been a huge help getting Signature Tile Works off the ground as a tile contracting business. I'd been doing tile work and contracting for years, but she came in as a consultant and helped me set up my business structure and basic systems — things like paperwork, scheduling, and how we handle client communication. Having those foundations in place has made it much easier for me to focus on the actual tile work while knowing the business side is finally organized."
+        </div>
+        <div class="ref-attribution">
+          <div class="ref-initials">VG</div>
+          <div>
+            <div class="ref-name">Victor Gil</div>
+            <div class="ref-title">Founder, Signature Tile Works</div>
+          </div>
+          <div class="ref-context-tag">Consulting Client</div>
+        </div>
+      </div>
+
+      <div class="ref-card">
+        <div class="ref-quote">
+          "Xenia manages my rental properties with a strong focus on documentation, accountability, and financial accuracy. She establishes clear payment structures, enforces lease terms, and handles tenant matters directly and professionally. Her stewardship protects both revenue and property value. I would recommend her without hesitation."
+        </div>
+        <div class="ref-attribution">
+          <div class="ref-initials">RO</div>
+          <div>
+            <div class="ref-name">Residential Property Owner</div>
+            <div class="ref-title">Winston-Salem, NC</div>
+          </div>
+          <div class="ref-context-tag">Operations Client</div>
+        </div>
+      </div>
+
+      <div class="ref-corporate-note">
+        <div class="rcn-icon">✦</div>
+        <p><strong>Corporate references available upon request.</strong> I held a 4+ year tenure as National Account Manager at a major national supply chain company, progressing from Logistics Coordinator through Regional Manager to National AM. Former colleagues, managers, and client contacts are available as references and will be provided directly upon request.</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>Xenia Bonilla <span class="footer-dot"></span> Account Management Portfolio <span class="footer-dot"></span> Consult with Xenia</span>
+  <span>All client information anonymized per industry standard practice</span>
+</footer>
+
+<script>
+  function showTab(tabId, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

@@ -698,6 +698,34 @@
     .ai-strip { grid-template-columns: 1fr; }
     .case-card-top { grid-template-columns: 1fr; }
     .ref-context-tag { display: none; }
+
+    /* Fix header on mobile */
+    header {
+      grid-template-columns: 1fr;
+      padding: 32px 24px 28px;
+      gap: 16px;
+    }
+
+    .name-block h1 { font-size: 42px; }
+
+    .name-block .title {
+      letter-spacing: 1px;
+      font-size: 10.5px;
+      word-spacing: 2px;
+    }
+
+    .contact-block {
+      text-align: left;
+      line-height: 1.9;
+    }
+
+    /* Fix footer on mobile */
+    footer {
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+      padding: 20px 24px;
+    }
   }
 
   @media (max-width: 500px) {
